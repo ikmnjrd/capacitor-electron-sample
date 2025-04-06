@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "allowSyntheticDefaultImports": true,
+    "composite": true,
+    "module": "ESNext",
+    "target": "ES2020",
+    "moduleResolution": "bundler",
+    "resolveJsonModule": true,
+    "strict": true
+  },
+  "include": ["electron", "eslint.config.ts", "package.json", "vite.config.ts"]
+}
