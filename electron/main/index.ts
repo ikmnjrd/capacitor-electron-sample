@@ -2,6 +2,7 @@ import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 import chalk from 'chalk'
 import { BrowserWindow, app, ipcMain } from 'electron'
+import { registerElectronImagePlugin } from '../../src/plugins/image/ElectronImagePlugin'
 
 const VITE_DEV_SERVER_URL = process.env.VITE_DEV_SERVER_URL
 
@@ -33,8 +34,16 @@ void app.whenReady().then(() => {
     console.log('Running in', chalk.magenta('production'), 'mode')
     void win.loadFile(path.join(__dirname, '../../www/index.html')) // Load built files in production
   }
+
+  // 各種プラグインを登録
+  registerPlugins(ipcMain)
 })
 
+function registerPlugins(ipcInstance: typeof ipcMain) {
+  registerElectronImagePlugin(ipcInstance)
+}
+
+// 基本的なIPCハンドラ (サンプル)
 ipcMain.on('request', (event, arg) => {
   console.log('Received message from renderer:', arg)
   event.reply('reply', 'pong')

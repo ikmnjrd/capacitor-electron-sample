@@ -8,5 +8,12 @@
     "resolveJsonModule": true,
     "strict": true
   },
-  "include": ["electron", "eslint.config.ts", "package.json", "vite.config.ts"]
+  "include": [
+    "electron",
+    "eslint.config.ts",
+    "package.json",
+    "vite.config.ts",
+    "src/plugins/image/ElectronImagePlugin.ts",
+    "src/plugins/image/interface.ts"
+  ]
 }

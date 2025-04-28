@@ -1,4 +1,5 @@
 import { contextBridge, ipcRenderer } from 'electron'
+import { createElectronImagePlugin } from '../../src/plugins/image/ElectronImagePlugin'
 
 // --------- Expose some API to the Renderer process ---------
 contextBridge.exposeInMainWorld('ipcRenderer', {
@@ -24,6 +25,12 @@ contextBridge.exposeInMainWorld('ipcRenderer', {
 
   // You can expose other APTs you need here.
   // ...
+})
+
+// プラグインブリッジ - ElectronとWebで共通APIを実現する
+contextBridge.exposeInMainWorld('Plugins', {
+  // Use the factory function to create the plugin instance, passing ipcRenderer
+  ImagePlugin: createElectronImagePlugin(ipcRenderer),
 })
 
 // --------- Preload scripts loading ---------
